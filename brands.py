@@ -1,24 +1,122 @@
 import re
 
 fashion = r"""
-([\s]?[Uu]niqlo[\s]?)?(Gap)?(H&M)?
-(Levis?|Levi's)?(Carhartt)?(Brooks Brothers)?
-(Apple)?(Patagonia)?(Everlane)?(J.?Crew)?(Zara)?
-(Target|Goodfellow)?(Vans)?(Banana Republic|BR)?
-([Oo]ld [Nn]avy)?(Saint Laurent)?([Pp]rada)?
-([Cc]anada [Gg]oose)?([Cc]ommon [Pp]rojects)?
-([Aa]llen [Ee]dmonds)?([Nn]ike)?([Aa]didas)?
-([Aa]bercrombie & [Ff]itch|A&F|[Aa]bercrombie and [Ff]itch)?
-(Amazon)?([Cc]alvin [Kk]lein|CK)?([Nn]orth [Ff]ace)?([Rr]alph [Ll]auren)?
-([Ll]acoste)?([Tt]ommy [Hh]ilfiger|Tommy)?([Hh]ollister)?([Ll]{2} Bean|L.L. Bean)?
-([Ll]ouis [Vv]uitton|LV)?([Tt]om [Ff]ord)?([Gg]ucci)?([Rr]olex)?([Bb]urberry)?
-([Aa]merican [Aa]pparel)?(UGG|ugg)?(Express)?(\A[Aa]sket)?([Aa]ll [Ss]aints)?
-([Cc]lub [Mm]onaco)?([Ss]cotch & [Ss]oda)?(Next [Ll]evel)?(J.?C.? Penney|JCPenney)?
-([Cc]ostco|[Kk]irkland)?([Dd]arn [Tt]ough])?([Nn]orse [Pp]rojects|)?
-([Rr]eigning [Cc]hamp)?([Nn]ew [Bb]alance|NB/b)?([Ss]tan [Ss]miths)?
-([Yy]eezy)?([Mm]ichael [Kk]ors)?([Rr]ed [Ww]ings?)?([Ll]ululemon)?
-([Mm]armot)?([Pp]uma)?([Ee]ddie [Bb]auer)?([Pp]endleton)?(3[Ss]ixteen)?([Bb]onobos)?
-([Ee]ngineered [Gg]arments)?(Outlier)?(Armani)?([Gg]ildan)?(American Eagle)?([Cc]olumbia)?
-([Cc]onverse)?([Dd]ockers)?([Bb]alenciaga)?(Juicy)?(Champion)?([Ll]and'?s [Ee]nd)?([Vv]iberg)?
-([Aa]ldens?)?(Clarks)?([Cc]huck [Tt]aylors)?()
+([\s]?[Uu]niqlo[\s]?)?
+([\s]?Gap[\s]?|[\s]?GAP[\s]?)?
+([\s]?[Hh]&[Mm][\s]?)?
+([\s]?[Ll]evis?[\s]?|[\s]?[Ll]evi's[\s]?)?
+([\s]?[Cc]arhartt[\s]?)?
+([\s]?[Bb]rooks [Bb]rothers[\s]?|[\s]?[Bb]rooks [Bb]ros[\s]?)?
+([\s]?Apple[\s]?)?
+([\s]?[Pp]atagonia[\s]?)?
+([\s]?[Ee]verlane[\s]?)?
+([\s]?J.?Crew[\s]?)?
+([\s]?Zara[\s]?)?
+([\s]?Target[\s]?|[\s]?Goodfellows?[\s]?)?
+([\s]?Vans[\s]?)?
+([\s]?Banana Republic[\s]?
+|[\s]?BR[\s]?)?
+([\s]?[Oo]ld [Nn]avy[\s]?)?
+([\s]?Saint Laurent[\s]?)?
+([\s]?[Pp]rada[\s]?)?
+([\s]?[Cc]anada [Gg]oose[\s]?)?
+([\s]?[Cc]ommon [Pp]rojects[\s]?)?
+([\s]?[Aa]llen [Ee]dmonds[\s]?)?
+([\s]?[Nn]ike[\s]?)?
+([\s]?[Aa]didas[\s]?|[\s]?[Ss]tan [Ss]miths[\s]?)?
+([\s]?[Aa]bercrombie & [Ff]itch[\s]?|[\s]?A&F[\s]?|[\s]?[Aa]bercrombie and [Ff]itch[\s]?|[\s]?[Aa]bercrombie[\s]?)?
+([\s]?Amazon[\s]?)?
+([\s]?[Cc]alvin [Kk]lein[\s]?|[\s]?CK[\s]?)?
+([\s]?[Nn]orth [Ff]ace[\s]?)?
+([\s]?[Rr]alph [Ll]auren[\s]?)?
+([\s]?[Ll]acoste[\s]?)?
+([\s]?[Tt]ommy [Hh]ilfiger[\s]?|[\s]?Tommy[\s]?)?
+([\s]?[Hh]ollister[\s]?)?
+([\s]?[Ll]{2} Bean[\s]?|[\s]?L.L. Bean[\s]?)?
+([\s]?[Ll]ouis [Vv]uitton[\s]?|[\s]?LV[\s]?)?
+([\s]?[Tt]om [Ff]ord[\s]?)?
+([\s]?[Gg]ucci[\s]?)?
+([\s]?[Rr]olex[\s]?)?
+([\s]?[Bb]urberry[\s]?)?
+([\s]?[Aa]merican [Aa]pparel[\s]?)?
+([\s]?UGG|ugg[\s]?)?
+([\s]?Express[\s]?)?
+(\A[Aa]sket[\s]?)?
+([\s]?[Bb]irkenstocks?[\s]?)?
+([\s]?[Cc]lub [Mm]onaco[\s]?)?
+([\s]?[Ss]cotch & [Ss]oda[\s]?)?
+([\s]?Next [Ll]evel[\s]?)?
+([\s]?J.?C.? Penney[\s]?|[\s]?JCPenney[\s]?)?
+([\s]?[Cc]ostco[\s]?|[\s]?[Kk]irkland[\s]?)?
+([\s]?[Dd]arn [Tt]ough][\s]?)?
+([\s]?[Nn]orse [Pp]rojects[\s]?)?
+([\s]?[Rr]eigning [Cc]hamp[\s]?)?
+([\s]?[Nn]ew [Bb]alance[\s]?|[\s]?NB/b)?
+([\s]?[Ff]rye[\s]?)?
+([\s]?[Yy]eezy[\s]?)?
+([\s]?[Mm]ichael [Kk]ors[\s]?)?
+([\s]?[Rr]ed [Ww]ings?[\s]?)?
+([\s]?[Ll]ululemon[\s]?|[\s]?[Ll]ulus?[\s]?)?
+([\s]?[Mm]armot[\s]?)?
+([\s]?[Pp]uma[\s]?)?
+([\s]?[Ee]ddie [Bb]auer[\s]?)?
+([\s]?[Pp]endleton[\s]?)?
+([\s]?3[Ss]ixteen[\s]?)?
+([\s]?[Bb]onobos[\s]?)?
+([\s]?[Ee]ngineered [Gg]arments[\s]?)?
+([\s]?Outlier[\s]?)?
+([\s]?Armani[\s]?)?
+([\s]?[Gg]ildan[\s]?)?
+([\s]?American Eagle[\s]?)?
+([\s]?[Cc]olumbia[\s]?)?
+([\s]?[Cc]onverse[\s]?)?
+([\s]?[Dd]ockers[\s]?)?
+([\s]?[Bb]alenciaga[\s]?)?
+([\s]?Juicy[\s]?)?
+([\s]?Champion[\s]?)?
+([[\s]?Ll]and'?s [Ee]nd[\s]?)?
+([\s]?[Vv]iberg[\s]?)?
+([\s]?[Aa]ldens?[\s]?)?
+([\s]?Clarks[\s]?)?
+([\s]?[Cc]huck [Tt]aylors[\s]?)?
+([\s]?[Vv]ictoria'?s? [Ss]ecret[\s]?)?
+([\s]?[Dd]ickie'?s[\s]?)?
+([\s]?[Ss]teve [Mm]adden[\s]?)?
+([\s]?[Tt]hrifted[\s]?)?
+([\s]?[Mm]argiela[\s]?)?
+([\s]?[Vv]isvim[\s]?)?
+([\s]?[Ll]oft[\s]?|[\s]?LOFT[\s]?)?
+([\s]?[Aa]nn [Tt]aylor[\s]?)?
+([\s]?[Pp]ull & [Bb]ear[\s]?)?
+([\s]?[Mm]adewell[\s]?)?
+([\s]?[Kk]enneth [Cc]ole[\s]?)?
+([\s]?Mango[\s]?)?
+([\s]?[Mm]odcloth[\s]?)
+([\s]?[Dd]oc Marten'?s?[\s]?|[\s]?Docs[\s]?)?
+([\s]?[Kk]ate [Ss]pade[\s]?)?
+([\s]?[Ss]tradivarius[\s]?)?
+([\s]?[Mm]arc [Jj]acobs[\s]?)?
+([\s]?[Aa]llsaints[\s]?|[\s]?[Aa]ll [Ss]aints[\s]?)?
+([\s]?[Pp]rimark[\s]?)?
+([\s]?[Ei]leen [Ff]isher[\s]?)?
+([\s]?[Aa]ritzia[\s]?)?
+([\s]?[Tt]opshop[\s]?)?
+([\s]?[Nn]aturalizer[\s]?)?
+([\s]?Spier[\s]?|[\s]?Spier & [Mm]ackay[\s]?)?
+([\s]?[Rr]ogue [Tt]erritory[\s]?)?
+([\s]?[Mm]uji[\s]?)?
+([\s]?[Aa]rcteryx[\s]?)?
+([\s]?[Pp]araboot[\s]?)?
+([\s]?[Bb]lundstones?[\s]?)?
+([\s]?[Ss]tan [Rr]ay[\s]?)?
+([\s]?[Dd]eveaux[\s]?)?
+([\s]?[Aa]lden[\s]?)?
+([\s]?Epaulet[\s]?)?
+([\s]?Berg & Berg[\s]?)?
+([\s]?ONI[\s]?)?
+([\s]?[Gg]rant [Ss]tone[\s]?)?
+([\s]?[Ee]van [Kk]inori[\s]?)?
+([\s]?[Nn]aked and [Ff]amous?)?
+([\s]?Supreme[\s]?)?
+([\s]?Drake's[\s]?)?
 """
