@@ -1,6 +1,6 @@
 # free-marketing-watch
 Data project to figure out where brands are being mentioned on social media and how much. 
-Also learning sentiment analysis and applying it to the mentions. 
+Also learning sentiment analysis and applying it to the mentions.
 
 ## Goals
 - [x] Start with Reddit and use pandas dataframes to collect comments on popular consumer subreddits like r/malefashionadvice.
@@ -9,5 +9,8 @@ Also learning sentiment analysis and applying it to the mentions.
 - [ ] Use NLTK to perform sentiment analysis.
 - [ ] Data visualizations with seaborn/matplotlib.
 
+
+## Side Goals
+- [ ] Use pushift io instead of praw to grab more comments.
 # Used in this project:
 Python, Jupyter, pandas, praw, NLTK, matplotlib.
