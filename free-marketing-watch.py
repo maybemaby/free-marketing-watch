@@ -60,6 +60,16 @@ def brand_check(df, brandlist):
 # we parse through so only use this if you need a lot of data you don't already have.
 # This one also asks you if you want to save as csv just in case.
 def create_multsub_df(subredditlist):
+    """Gets the comments of multiple subreddits and concatenates them in one big
+    dataframe.
+
+    Inputs
+    ------
+    List of subreddits you will search over.
+    Return
+    ------
+    Concatenated dataframe.
+    """
     df = [create_comments_df(subreddit) for subreddit in subredditlist]
     comb_df = pd.concat(df)
     reply = input("Would you like to save the file dataframe to csv? (Y or N)")
@@ -83,4 +93,3 @@ p = Path.cwd() / "data" / filename
 df = create_comments_df(subreddit)
 
 df2 = brand_check(df, fashion)
-print(df2["Brand"].value_counts())
