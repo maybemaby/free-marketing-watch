@@ -11,6 +11,6 @@ Also learning sentiment analysis and applying it to the mentions.
 
 
 ## Side Goals
-- [ ] Use pushift io instead of praw to grab more comments.
+- [x] Use pushift io instead of praw to grab more comments.
 # Used in this project:
 Python, Jupyter, pandas, praw, NLTK, matplotlib.
